@@ -6,10 +6,19 @@
 	<title>Game Suit Jawa Versi 2.0</title>
 </head>
 <body>
+    
+    
+    <h1>Suwit Jawa V2.0</h1>
+    <h6 class="h6">By : Anwar Fadli</h6>
+    <br>
+    <br>
+    <br>
+    <br>
 
+    <h1 class="h1" id="skor">~~~ Skor ~~~ </h1>
+    <h1>Player : <span id="playerpoin">0</span></h1> 
+    <h1>Komputer : <span id="komputerpoin">0</span></h1>
 
-<h1>Suwit Jawa V2.0</h1>
-<h6 class="h6">By : Anwar Fadli</h6>
 
     <div class="container">
         <div class="area-komputer">
@@ -30,6 +39,7 @@
             </ul>
         </div>
     </div>
+
 
     <h1 class="h1">Ubah Latar Belakang</h1>
     <div class="kotak merah"></div>
@@ -219,7 +229,9 @@ img {
     </style>
 
 <script>
-	
+	alert("Jika Pemain Terlebih Dahulu Mencapai Skor 10 Maka Dia Menang");
+
+
 function getPilihanComputer() {
 	const comp = Math.random();
 	if( comp < 0.34 ) return 'gajah';
@@ -230,8 +242,8 @@ function getPilihanComputer() {
 function getHasil(comp, player) {
 	if( player == comp ) return 'SERI!!';
 	if( player == 'gajah') return( comp == 'orang' ) ? 'MENANG!!!' : 'KALAH!!!';
-	if( player == 'orang' ) return( comp == 'gajah' ) ? 'KALAH!!' : 'MENANG!!';
- 	if( player == 'semut') return( comp == 'orang' ) ? 'KALAH!' : 'MENANG!!'; 
+	if( player == 'orang' ) return( comp == 'gajah' ) ? 'KALAH!!!' : 'MENANG!!!';
+ 	if( player == 'semut') return( comp == 'orang' ) ? 'KALAH!!!' : 'MENANG!!!'; 
 }
 const pOrang = document.querySelector('.orang');
 pOrang.addEventListener('click', function() {
@@ -316,8 +328,36 @@ pilihan.forEach(function(pil) {
 
         const info = document.querySelector('.info');
         info.innerHTML = hasil; 
-        }, 1000)  
-    });
+
+        
+        const playerPoin = document.querySelector("#playerpoin");
+        const komputerPoin = document.querySelector("#komputerpoin");
+        
+        if( info.innerText == "MENANG!!!" ) {
+            playerPoin.innerText = parseInt(playerPoin.innerText) + 1;
+        }
+    
+        if( info.innerText == "KALAH!!!" ) {
+            komputerPoin.innerText = parseInt(komputerPoin.innerText) + 1;
+        }
+
+        if( playerPoin.innerText == 10 ) {
+            alert("Kamu Menang");
+            playerPoin.innerText = 0;
+            komputerPoin.innerText = 0;
+            info.innerText = "";
+        }
+        if( komputerPoin.innerText == 10 ) {
+            alert("Kamu Kalah");
+            playerPoin.innerText = 0;
+            komputerPoin.innerText = 0;
+            info.innerText = "";
+        }
+
+
+    }, 1000)  
+    
+});
 });
 
 
